@@ -1,0 +1,37 @@
+model:
+  name: resnet34
+  pretrained: true
+  num_classes: 2
+  gnn:
+    enabled: false
+    type: gat
+    patch_grid: [7, 7]
+
+data:
+  config_file: configs/data.yaml
+  aug_train: configs/aug_light.yaml
+  aug_eval: configs/aug_light.yaml
+  batch_size: 16
+  num_workers: 4
+  shuffle: true
+
+training:
+  epochs: 25
+  optimizer: adamw
+  lr: 3e-4
+  weight_decay: 1e-4
+  scheduler: cosine
+  label_smoothing: 0.05
+  focal_loss: false
+  early_stop_patience: 8
+  grad_clip: 1.0
+  mixed_precision: false
+
+metrics:
+  primary: f1_defect
+  others: [accuracy, precision, recall, f1_macro, auroc]
+
+logging:
+  exp_name: resnet34_tyrenet_v1
+  save_dir: artifacts/experiments/resnet34_tyrenet_v1
+  log_interval: 50

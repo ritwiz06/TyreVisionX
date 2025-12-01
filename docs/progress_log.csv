@@ -1,0 +1,8 @@
+date,area,details,status
+2024-11-01,scaffold,Initialized TyreVisionX repo structure and configs,done
+2024-11-01,tooling,Added Makefile, requirements, CI workflow,done
+2024-11-01,pipeline,Implemented data loaders, transforms, training/eval/export,done
+2024-11-01,inference,Created FastAPI service, Streamlit app, demo scripts,done
+2024-11-01,testing,Added pytest smoke tests for transforms/datasets/metrics/service,done
+
+2024-11-30,data,Imported Tyre dataset into data/D1_tyrenet and generated manifests/splits,done
