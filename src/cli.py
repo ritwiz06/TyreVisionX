@@ -11,7 +11,7 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     train_p = subparsers.add_parser("train", help="Run training")
-    train_p.add_argument("--config", default="configs/train_resnet18.yaml", help="Config YAML")
+    train_p.add_argument("--config", default="configs/train/train_resnet18.yaml", help="Config YAML")
 
     eval_p = subparsers.add_parser("eval", help="Run evaluation")
     eval_p.add_argument("--checkpoint", required=True, help="Path to checkpoint")

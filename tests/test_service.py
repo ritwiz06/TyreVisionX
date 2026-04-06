@@ -1,8 +1,11 @@
 import io
 
 import numpy as np
+import pytest
 from fastapi.testclient import TestClient
 from PIL import Image
+
+pytest.importorskip("multipart")
 
 from src.service_fastapi import app
 

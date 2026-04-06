@@ -17,14 +17,14 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from src.data.balance import compute_class_weights, focal_loss
-from src.data.datasets import load_combined_datasets
+from src.data.datasets import load_dataset_from_runtime_config
 from src.data.transforms import get_eval_transforms, get_train_transforms
-from src.dataset import TyreManifestDataset
 from src.models.cnn_gnn import CNNGNNClassifier, HAS_PYG  # type: ignore
 from src.models.resnet_classifier import build_resnet
 from src.utils.logging import configure_logging, get_logger
 from src.utils.metrics import classification_metrics
 from src.utils.paths import ensure_dir
+from src.utils.registry import register_model
 from src.utils.seed import set_seed
 
 
@@ -39,27 +39,9 @@ def load_yaml(path: Path) -> Dict:
 def build_datasets(config: Dict) -> Tuple:
     train_tfms = get_train_transforms(config["data"]["aug_train"])
     eval_tfms = get_eval_transforms(config["data"]["aug_eval"])
-
-    manifest_csv = config["data"].get("manifest_csv")
-    if manifest_csv:
-        train_ds = TyreManifestDataset(manifest_csv=manifest_csv, split="train", transforms=train_tfms)
-        val_ds = TyreManifestDataset(manifest_csv=manifest_csv, split="val", transforms=eval_tfms)
-        return train_ds, val_ds, eval_tfms, [manifest_csv]
-
-    data_cfg = load_yaml(Path(config["data"]["config_file"]))
-    selected = config["data"].get("use_datasets", data_cfg.get("use_datasets", []))
-    manifests = []
-    roots = {}
-    for ds in selected:
-        ds_cfg = data_cfg["paths"].get(ds)
-        if not ds_cfg:
-            raise ValueError(f"Dataset {ds} not found in data config")
-        manifests.append(ds_cfg["manifest"])
-        roots[ds] = Path(ds_cfg["root"])
-
-    train_ds = load_combined_datasets(manifests, split="train", transforms=train_tfms, roots=roots)
-    val_ds = load_combined_datasets(manifests, split="val", transforms=eval_tfms, roots=roots)
-    return train_ds, val_ds, eval_tfms, manifests
+    train_ds, manifests = load_dataset_from_runtime_config(config["data"], split="train", transforms=train_tfms)
+    val_ds, _ = load_dataset_from_runtime_config(config["data"], split="val", transforms=eval_tfms)
+    return train_ds, val_ds, manifests
 
 
 def compute_weights_from_manifests(manifests) -> torch.Tensor:
@@ -176,7 +158,7 @@ def main(config_path: str) -> None:
     configure_logging(log_dir)
     logger.info(f"Loading config from {cfg_path}")
 
-    train_ds, val_ds, eval_tfms, manifests = build_datasets(config)
+    train_ds, val_ds, manifests = build_datasets(config)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     train_loader = DataLoader(
@@ -258,6 +240,6 @@ def main(config_path: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default="configs/train_resnet18.yaml", help="Path to config YAML")
+    parser.add_argument("--config", default="configs/train/train_resnet18.yaml", help="Path to config YAML")
     args = parser.parse_args()
     main(args.config)

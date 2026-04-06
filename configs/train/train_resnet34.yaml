@@ -1,5 +1,3 @@
-# Deprecated compatibility copy.
-# Canonical training config: configs/train/train_resnet34.yaml
 model:
   name: resnet34
   pretrained: true

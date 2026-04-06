@@ -1,5 +1,3 @@
-# Deprecated compatibility copy.
-# Canonical dataset config: configs/data/datasets.yaml
 label_mapping:
   good: 0
   defect: 1

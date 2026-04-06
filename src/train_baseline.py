@@ -1,4 +1,4 @@
-"""Baseline training script for simple CNN and feature extractor baselines."""
+"""Legacy baseline training script kept for historical reproducibility."""
 from __future__ import annotations
 
 import argparse
@@ -172,7 +172,7 @@ def build_model(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Train baseline classifier")
-    parser.add_argument("--manifest", default="data/processed/D1_manifest.csv", help="Manifest CSV path")
+    parser.add_argument("--manifest", default="data/manifests/D1_tyrenet_manifest.csv", help="Manifest CSV path")
     parser.add_argument("--img_size", type=int, default=224, help="Image size")
     parser.add_argument(
         "--preset",

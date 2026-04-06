@@ -14,7 +14,7 @@ from sklearn.metrics import precision_recall_curve, roc_auc_score, roc_curve
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from src.data.datasets import load_combined_datasets
+from src.data.datasets import load_dataset_from_runtime_config
 from src.data.transforms import get_eval_transforms
 from src.models.cnn_gnn import CNNGNNClassifier, HAS_PYG  # type: ignore
 from src.models.resnet_classifier import build_resnet
@@ -28,22 +28,6 @@ logger = get_logger("eval")
 def load_yaml(path: Path) -> Dict:
     with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
-
-
-def build_dataset(config: Dict, split: str, eval_tfms) -> Tuple:
-    data_cfg = load_yaml(Path(config["data"]["config_file"]))
-    selected = config["data"].get("use_datasets", data_cfg.get("use_datasets", []))
-    manifests = []
-    roots = {}
-    for ds in selected:
-        ds_cfg = data_cfg["paths"].get(ds)
-        if not ds_cfg:
-            raise ValueError(f"Dataset {ds} not found in data config")
-        manifests.append(ds_cfg["manifest"])
-        roots[ds] = Path(ds_cfg["root"])
-    dataset = load_combined_datasets(manifests, split=split, transforms=eval_tfms, roots=roots)
-    return dataset, manifests
-
 
 def build_model(config: Dict, checkpoint: Path, device: torch.device) -> torch.nn.Module:
     model_cfg = config["model"]
@@ -130,8 +114,8 @@ def main(checkpoint: str, split: str = "test", report_path: str | None = None) -
     config = load_yaml(cfg_path)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    eval_tfms = get_eval_transforms(config["data"].get("aug_eval", "configs/aug_light.yaml"))
-    dataset, manifests = build_dataset(config, split, eval_tfms)
+    eval_tfms = get_eval_transforms(config["data"].get("aug_eval", "configs/aug/light.yaml"))
+    dataset, manifests = load_dataset_from_runtime_config(config["data"], split=split, transforms=eval_tfms)
     loader = DataLoader(dataset, batch_size=config["data"].get("batch_size", 16), shuffle=False, num_workers=config["data"].get("num_workers", 4))
 
     model = build_model(config, ckpt_path, device)

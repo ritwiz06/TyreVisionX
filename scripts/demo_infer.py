@@ -52,7 +52,7 @@ def build_model(checkpoint: Path, device: torch.device):
     model.to(device)
     model.eval()
 
-    tfms = get_eval_transforms(config["data"].get("aug_eval", "configs/aug_light.yaml"))
+    tfms = get_eval_transforms(config["data"].get("aug_eval", "configs/aug/light.yaml"))
     return model, tfms
 
 

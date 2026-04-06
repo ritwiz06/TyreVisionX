@@ -47,7 +47,7 @@ def main(config_path: str, seed: int):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default="configs/data.yaml", help="Data config path")
+    parser.add_argument("--config", default="configs/data/datasets.yaml", help="Data config path")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
     args = parser.parse_args()
     main(args.config, args.seed)

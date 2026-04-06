@@ -1,5 +1,3 @@
-# Deprecated compatibility copy.
-# Canonical augmentation config: configs/aug/strong.yaml
 size: [384, 384]
 train:
   - name: RandomResizedCrop

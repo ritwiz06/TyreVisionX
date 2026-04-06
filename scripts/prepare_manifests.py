@@ -159,11 +159,11 @@ def build_manifest(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Prepare dataset manifest CSV with splits.")
-    parser.add_argument("--dataset_root", default="data/raw", help="Dataset root")
+    parser.add_argument("--dataset_root", default="data/D1_tyrenet", help="Dataset root")
     parser.add_argument("--dataset_id", default="D1", help="Dataset identifier")
     parser.add_argument("--good_dir", default="good", help="Good class folder name")
     parser.add_argument("--defect_dir", default="defect", help="Defect class folder name")
-    parser.add_argument("--out_csv", default="data/processed/D1_manifest.csv", help="Output CSV path")
+    parser.add_argument("--out_csv", default="data/manifests/D1_tyrenet_manifest.csv", help="Output CSV path")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
     parser.add_argument("--split", default="0.7,0.15,0.15", help="Split ratios train,val,test")
     parser.add_argument(

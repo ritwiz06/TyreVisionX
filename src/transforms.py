@@ -1,4 +1,4 @@
-"""Albumentations pipelines for training/evaluation."""
+"""Legacy baseline transforms kept as a compatibility import path."""
 from __future__ import annotations
 
 from typing import Literal

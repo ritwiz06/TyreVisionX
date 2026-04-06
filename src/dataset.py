@@ -1,4 +1,4 @@
-"""Manifest-driven dataset utilities for TyreVisionX."""
+"""Legacy baseline dataset utilities kept as a compatibility import path."""
 from __future__ import annotations
 
 from pathlib import Path

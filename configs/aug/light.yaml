@@ -1,5 +1,3 @@
-# Deprecated compatibility copy.
-# Canonical augmentation config: configs/aug/light.yaml
 size: [384, 384]
 train:
   - name: HorizontalFlip

@@ -1,7 +1,5 @@
-# Deprecated compatibility copy.
-# Canonical training config: configs/train/train_resnet34.yaml
 model:
-  name: resnet34
+  name: resnet18
   pretrained: true
   num_classes: 2
   gnn:
@@ -19,7 +17,7 @@ data:
   shuffle: true
 
 training:
-  epochs: 25
+  epochs: 20
   optimizer: adamw
   lr: 3e-4
   weight_decay: 1e-4
@@ -35,6 +33,6 @@ metrics:
   others: [accuracy, precision, recall, f1_macro, auroc]
 
 logging:
-  exp_name: resnet34_tyrenet_v1
-  save_dir: artifacts/experiments/resnet34_tyrenet_v1
+  exp_name: resnet18_tyrenet_v1
+  save_dir: artifacts/experiments/resnet18_tyrenet_v1
   log_interval: 50

@@ -1,4 +1,4 @@
-"""Baseline evaluation script for CNN baselines and frozen feature extractors."""
+"""Legacy baseline evaluation script kept for historical reproducibility."""
 from __future__ import annotations
 
 import argparse
@@ -240,7 +240,7 @@ def infer_model_type(checkpoint_path: Path) -> tuple[str, bool, bool, bool, floa
 def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate baseline classifier")
     parser.add_argument("--checkpoint", required=True, help="Path to model checkpoint")
-    parser.add_argument("--manifest", default="data/processed/D1_manifest.csv", help="Manifest CSV path")
+    parser.add_argument("--manifest", default="data/manifests/D1_tyrenet_manifest.csv", help="Manifest CSV path")
     parser.add_argument("--split", default="test", choices=["train", "val", "test"], help="Split")
     parser.add_argument("--img_size", type=int, default=224, help="Image size")
     parser.add_argument("--batch_size", type=int, default=16, help="Batch size")

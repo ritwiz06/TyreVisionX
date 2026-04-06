@@ -23,9 +23,9 @@ from torch.utils.data import DataLoader
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from src.dataset import TyreManifestDataset
+from src.legacy.dataset import TyreManifestDataset
 from src.models.simple_cnn import SimpleCNN
-from src.transforms import get_eval_transforms
+from src.legacy.transforms import get_eval_transforms
 
 
 @dataclass
@@ -61,7 +61,7 @@ class ModelVariant:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Day-5 long-run seed sweep")
-    parser.add_argument("--manifest", default="data/processed/D1_manifest.csv")
+    parser.add_argument("--manifest", default="data/manifests/D1_tyrenet_manifest.csv")
     parser.add_argument("--out_root", default="artifacts/day5/longrun_seed_sweep")
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--patience", type=int, default=3)
@@ -88,7 +88,8 @@ def run_training(
     out_dir.mkdir(parents=True, exist_ok=True)
     cmd = [
         sys.executable,
-        "src/train_baseline.py",
+        "-m",
+        "src.legacy.train_baseline",
         "--manifest",
         manifest,
         "--epochs",

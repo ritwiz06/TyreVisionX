@@ -1,5 +1,5 @@
 PYTHON ?= python
-CONFIG ?= configs/train_resnet18.yaml
+CONFIG ?= configs/train/train_resnet18.yaml
 CHECKPOINT ?= artifacts/experiments/resnet18_tyrenet_v1/best.pt
 
 .PHONY: setup download manifests folds train eval export serve app test fmt lint
@@ -15,7 +15,7 @@ manifests:
 	$(PYTHON) scripts/prepare_manifests.py
 
 folds:
-	$(PYTHON) scripts/prepare_folds.py
+	$(PYTHON) scripts/prepare_folds.py --config configs/data/datasets.yaml
 
 train:
 	$(PYTHON) -m src.train --config $(CONFIG)

@@ -25,7 +25,7 @@ from src.utils.registry import list_models
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 LABELS = {0: "good", 1: "defect"}
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEFAULT_AUG = BASE_DIR / "configs/aug_light.yaml"
+DEFAULT_AUG = BASE_DIR / "configs/aug/light.yaml"
 
 
 class DummyModel(nn.Module):
