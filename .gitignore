@@ -33,6 +33,8 @@ logs/
 
 # Data and outputs
 /data/*
+data/raw/
+data/processed/
 !data/README.md
 !data/manifests/
 *.csv
@@ -64,9 +66,14 @@ Thumbs.db
 
 # Notebooks
 *.ipynb
+!notebooks/
+!notebooks/dataset_exploration.ipynb
+.ipynb_checkpoints/
 
 # Reports
 reports/
+!reports/
+!reports/dataset_report.md
 
 # dotenv
 .env.local

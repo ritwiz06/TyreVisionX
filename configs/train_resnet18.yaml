@@ -8,6 +8,7 @@ model:
     patch_grid: [7, 7]
 
 data:
+  manifest_csv: data/processed/D1_manifest.csv
   config_file: configs/data.yaml
   aug_train: configs/aug_light.yaml
   aug_eval: configs/aug_light.yaml

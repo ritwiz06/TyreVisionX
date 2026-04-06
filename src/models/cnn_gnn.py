@@ -6,7 +6,10 @@ from typing import Tuple
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torchvision import models
+
+from src.utils.torchvision_compat import load_torchvision_models
+
+models = load_torchvision_models()
 
 try:
     from torch_geometric.nn import GATConv, SAGEConv, global_max_pool, global_mean_pool

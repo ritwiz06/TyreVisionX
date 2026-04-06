@@ -4,7 +4,10 @@ from __future__ import annotations
 from typing import Literal
 
 import torch.nn as nn
-from torchvision import models
+
+from src.utils.torchvision_compat import load_torchvision_models
+
+models = load_torchvision_models()
 
 
 def build_resnet(model_name: Literal["resnet18", "resnet34"], num_classes: int = 2, pretrained: bool = True) -> nn.Module:

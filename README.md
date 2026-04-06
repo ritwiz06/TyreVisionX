@@ -102,6 +102,59 @@ TyreVisionX/
 ## Progress Tracking
 - See `docs/progress_log.csv` (Excel-friendly) for a running log of changes, methods, and checkpoints. Update as you iterate.
 
+## Day 3 Baseline Analysis (Portfolio)
+### Dataset Size and Class Balance (D1)
+- Total images: 1698
+- Class counts: defect = 866, good = 832
+- Split counts:
+  - train: defect 606, good 582
+  - val: defect 130, good 125
+  - test: defect 130, good 125
+
+### Baseline Model Details
+- Architecture: `frozen_resnet50` feature extractor + linear classifier head
+- Training mode: pretrained ImageNet backbone with `layer4` unfrozen (`--unfreeze_last_block`)
+- Input pipeline: RGB, `224x224`, ImageNet normalization, light augmentation on train
+- Run used for cleaner comparison: `artifacts/day3_baseline/frozen_resnet50_unfreeze_v2_3ep`
+
+### Metrics (Test Split)
+- Accuracy: 0.9804
+- Precision (macro): 0.9804
+- Recall (macro): 0.9806
+- F1 (macro): 0.9804
+- Precision (defect): 0.9921
+- Recall (defect): 0.9692
+- F1 (defect): 0.9805
+- AUROC: 0.9985
+- Confusion matrix: `[[124, 1], [4, 126]]`
+  - False positives: 1
+  - False negatives: 4
+
+### Failure Patterns
+- False negatives are concentrated in a few defect images:
+  - `Defective (520).jpg`
+  - `Defective (408).jpg`
+  - `Defective (418).jpg`
+  - `Defective (518).jpg`
+- One persistent ambiguous sample (`Defective (518).jpg`) has appeared as FN across multiple runs.
+- Misclassification artifacts:
+  - `artifacts/day3_baseline/frozen_resnet50_unfreeze_v2_3ep/misclassified.csv`
+  - `artifacts/day3_baseline/frozen_resnet50_unfreeze_v2_3ep/false_negatives.csv`
+  - `artifacts/day3_baseline/frozen_resnet50_unfreeze_v2_3ep/misclassified_grid.png`
+  - `artifacts/day3_baseline/frozen_resnet50_unfreeze_v2_3ep/false_negative_grid.png`
+
+### Hypotheses for Improvement (Data-Driven)
+- Missed subtle cracks: add higher-resolution training branch (`384`) or multi-scale crops.
+- Lighting sensitivity risk: add illumination normalization and targeted brightness/contrast augmentation.
+- FN/FP tradeoff across epochs: tune decision threshold below 0.5 to optimize defect recall.
+- Possible hard-sample ambiguity: manually audit persistent FN files for label quality.
+
+### Day 4–5 Decisions
+- Keep ResNet50 as strong baseline but optimize for recall-critical deployment:
+  - threshold calibration on validation set targeting recall(defect) >= 0.95
+  - focal loss or class-weight tuning to penalize false negatives more
+  - hard-example mining on persistent FN set
+
 ## Notes
 - Label mapping is fixed: `good = 0`, `defect = 1`.
 - Validation/test use deterministic resize + normalize (no random aug).

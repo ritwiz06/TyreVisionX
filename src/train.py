@@ -19,6 +19,7 @@ from tqdm import tqdm
 from src.data.balance import compute_class_weights, focal_loss
 from src.data.datasets import load_combined_datasets
 from src.data.transforms import get_eval_transforms, get_train_transforms
+from src.dataset import TyreManifestDataset
 from src.models.cnn_gnn import CNNGNNClassifier, HAS_PYG  # type: ignore
 from src.models.resnet_classifier import build_resnet
 from src.utils.logging import configure_logging, get_logger
@@ -36,6 +37,15 @@ def load_yaml(path: Path) -> Dict:
 
 
 def build_datasets(config: Dict) -> Tuple:
+    train_tfms = get_train_transforms(config["data"]["aug_train"])
+    eval_tfms = get_eval_transforms(config["data"]["aug_eval"])
+
+    manifest_csv = config["data"].get("manifest_csv")
+    if manifest_csv:
+        train_ds = TyreManifestDataset(manifest_csv=manifest_csv, split="train", transforms=train_tfms)
+        val_ds = TyreManifestDataset(manifest_csv=manifest_csv, split="val", transforms=eval_tfms)
+        return train_ds, val_ds, eval_tfms, [manifest_csv]
+
     data_cfg = load_yaml(Path(config["data"]["config_file"]))
     selected = config["data"].get("use_datasets", data_cfg.get("use_datasets", []))
     manifests = []
@@ -46,8 +56,6 @@ def build_datasets(config: Dict) -> Tuple:
             raise ValueError(f"Dataset {ds} not found in data config")
         manifests.append(ds_cfg["manifest"])
         roots[ds] = Path(ds_cfg["root"])
-    train_tfms = get_train_transforms(config["data"]["aug_train"])
-    eval_tfms = get_eval_transforms(config["data"]["aug_eval"])
 
     train_ds = load_combined_datasets(manifests, split="train", transforms=train_tfms, roots=roots)
     val_ds = load_combined_datasets(manifests, split="val", transforms=eval_tfms, roots=roots)
