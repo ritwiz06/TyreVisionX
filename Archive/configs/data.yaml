@@ -1,0 +1,28 @@
+# Deprecated compatibility copy.
+# Canonical dataset config: configs/data/datasets.yaml
+label_mapping:
+  good: 0
+  defect: 1
+
+use_datasets: [D1]
+
+splits:
+  train: 0.7
+  val: 0.15
+  test: 0.15
+  split_column: split
+
+paths:
+  D1:
+    root: data/D1_tyrenet
+    manifest: data/manifests/D1_tyrenet_manifest.csv
+  D2:
+    root: data/D2_tire_crack
+    manifest: data/manifests/D2_crack_manifest.csv
+  D3:
+    root: data/D3_tyre_quality
+    manifest: data/manifests/D3_quality_manifest.csv
+
+combine:
+  enabled: false
+  datasets: [D1, D2]

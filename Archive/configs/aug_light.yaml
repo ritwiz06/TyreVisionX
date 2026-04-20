@@ -1,0 +1,19 @@
+# Deprecated compatibility copy.
+# Canonical augmentation config: configs/aug/light.yaml
+size: [384, 384]
+train:
+  - name: HorizontalFlip
+    p: 0.5
+  - name: Rotate
+    limit: 10
+    p: 0.5
+  - name: RandomBrightnessContrast
+    brightness_limit: 0.1
+    contrast_limit: 0.1
+    p: 0.3
+  - name: GaussianBlur
+    blur_limit: 3
+    p: 0.2
+normalize:
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
