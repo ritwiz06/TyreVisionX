@@ -1,0 +1,494 @@
+{
+  "config_path": "configs/anomaly/anomaly_baseline.yaml",
+  "configured_backbone": "resnet18",
+  "expected_torchvision_weight": "resnet18-f37072fd.pth",
+  "candidate_weight_sources": [
+    {
+      "source_type": "torchvision_cache",
+      "path": "/Users/ritik/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth",
+      "exists": true,
+      "compatible": true,
+      "backbone": "resnet18",
+      "notes": "Matches configured torchvision backbone filename."
+    },
+    {
+      "source_type": "fallback_torchvision_cache",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth",
+      "exists": true,
+      "compatible": true,
+      "backbone": "resnet50",
+      "notes": "Supported fallback only if config is changed to backbone=resnet50."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/frozen_resnet18_unfreeze_v2/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/frozen_resnet18_unfreeze_v2/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/frozen_resnet18_v1/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/frozen_resnet18_v1/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/frozen_resnet50_unfreeze_v1/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/frozen_resnet50_unfreeze_v1/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/frozen_resnet50_unfreeze_v2_3ep/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/frozen_resnet50_unfreeze_v2_3ep/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/simple_cnn_phase1_sigmoid_v1/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/simple_cnn_phase1_sigmoid_v1/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/simple_cnn_v1/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/simple_cnn_v1/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/simple_cnn_v2/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day3_baseline/simple_cnn_v2/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/augmentation/seed_123/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/augmentation/seed_123/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/augmentation/seed_7/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/augmentation/seed_7/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/augmentation/seed_999/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/augmentation/seed_999/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/baseline/seed_123/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/baseline/seed_123/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/baseline/seed_7/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/baseline/seed_7/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/baseline/seed_999/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/baseline/seed_999/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/batchnorm/seed_123/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/batchnorm/seed_123/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/batchnorm/seed_7/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/batchnorm/seed_7/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/batchnorm/seed_999/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/batchnorm/seed_999/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/dropout/seed_123/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/dropout/seed_123/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/dropout/seed_7/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/dropout/seed_7/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/dropout/seed_999/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/longrun_seed_sweep/dropout/seed_999/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/simple_cnn_control_noaug_nowd/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/simple_cnn_control_noaug_nowd/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/simple_cnn_day5_aug_nowd/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/simple_cnn_day5_aug_nowd/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/simple_cnn_day5_aug_wd1e4/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/simple_cnn_day5_aug_wd1e4/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_aug/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_aug/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_aug_batchnorm/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_aug_batchnorm/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_aug_batchnorm_dropout03/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_aug_batchnorm_dropout03/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_aug_batchnorm_dropout03_fix/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_aug_batchnorm_dropout03_fix/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_aug_batchnorm_fix/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_aug_batchnorm_fix/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_baseline/best.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    },
+    {
+      "source_type": "project_checkpoint",
+      "path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/day5/step3_step4_baseline/last.pt",
+      "exists": true,
+      "compatible": false,
+      "backbone": "unknown",
+      "notes": "Found locally, but not selected automatically unless proven ResNet-backbone compatible."
+    }
+  ],
+  "chosen_weight_source": {
+    "source_type": "torchvision_cache",
+    "path": "/Users/ritik/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth",
+    "exists": true,
+    "compatible": true,
+    "backbone": "resnet18",
+    "notes": "Matches configured torchvision backbone filename."
+  },
+  "manifest_checks": {
+    "normal_train_manifest": true,
+    "validation_manifest": true,
+    "test_manifest": true
+  },
+  "can_run_real_anomaly_baseline": true,
+  "blocker": null
+}

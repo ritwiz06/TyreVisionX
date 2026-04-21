@@ -1,0 +1,111 @@
+registry_version: 1
+updated: "2026-04-20"
+policy:
+  download_allowed_by_default: false
+  auto_merge_allowed: false
+  requires_license_review: true
+  requires_label_mapping_review: true
+datasets:
+  - id: roboflow_good_tire_bad_tire
+    name: Good Tire Bad Tire
+    source_url: https://universe.roboflow.com/testing-ey6ch/good-tire-bad-tire
+    provider: roboflow_universe
+    task_type: classification
+    visible_license: CC BY 4.0
+    license_status: visible_license_recorded
+    classes: [good, defective]
+    image_count: 1830
+    image_count_note: Roboflow page reports about 1.8k images.
+    augmentation_version_inflation_risk: unknown
+    immediate_use_phase: anomaly_support
+    recommended_action: Near-term candidate after license citation, duplicate check, and label audit.
+    label_mapping:
+      good: normal
+      defective: anomaly
+
+  - id: roboflow_tires_defects_omar
+    name: Tires Defects
+    source_url: https://universe.roboflow.com/omar-sameh-j33nv/tires-defects
+    provider: roboflow_universe
+    task_type: classification
+    visible_license: CC BY 4.0
+    license_status: visible_license_recorded
+    classes: [Good, Defected]
+    image_count: 3310
+    image_count_note: Roboflow page reports about 3.3k images.
+    augmentation_version_inflation_risk: moderate
+    immediate_use_phase: supervised_benchmark
+    recommended_action: Candidate external supervised benchmark; keep separate from D1 until duplicate/leakage audit.
+    label_mapping:
+      Good: normal
+      Defected: anomaly
+
+  - id: roboflow_tire_tread_mark
+    name: Tire Tread
+    source_url: https://universe.roboflow.com/mark-aft7n/tire-tread
+    provider: roboflow_universe
+    task_type: object_detection
+    visible_license: Public Domain
+    license_status: visible_license_recorded
+    classes: [BAD_Tyres, BALD_Tyres, NORMAL_Tyres]
+    image_count: 6320
+    image_count_note: Roboflow page reports about 6.3k images.
+    augmentation_version_inflation_risk: high
+    immediate_use_phase: localization_future
+    recommended_action: Later-phase localization/tread benchmark; do not use directly for current good-only anomaly training.
+    label_mapping:
+      NORMAL_Tyres: normal
+      BAD_Tyres: anomaly
+      BALD_Tyres: anomaly
+
+  - id: roboflow_defect_hemant
+    name: defect (Hemant)
+    source_url: https://universe.roboflow.com/hemant-4vo9o/defect-u5tbz
+    provider: roboflow_universe
+    task_type: object_detection
+    visible_license: CC BY 4.0
+    license_status: visible_license_recorded
+    classes: [bead_damage, CBU, cut, tr]
+    image_count: 880
+    image_count_note: Roboflow page reports 880 images.
+    augmentation_version_inflation_risk: moderate
+    immediate_use_phase: localization_future
+    recommended_action: Later-phase tyre damage localization dataset; not a near-term normal-only anomaly source.
+    label_mapping:
+      bead_damage: anomaly
+      CBU: anomaly
+      cut: anomaly
+      tr: anomaly
+
+  - id: roboflow_tire_college_segmentation
+    name: tire (College segmentation)
+    source_url: pending_exact_url
+    provider: roboflow_universe
+    task_type: segmentation
+    visible_license: pending_verification
+    license_status: blocked_pending_source_verification
+    classes: [tire]
+    image_count: null
+    image_count_note: Exact Roboflow project not identified from current repository context.
+    augmentation_version_inflation_risk: unknown
+    immediate_use_phase: hold
+    recommended_action: Hold until exact source URL, license, task, and classes are verified.
+    label_mapping:
+      tire: object_mask
+
+  - id: roboflow_tire_quality_tirescanner
+    name: Tire Quality
+    source_url: https://universe.roboflow.com/tirescanner/tire-quality
+    provider: roboflow_universe
+    task_type: classification
+    visible_license: pending_verification
+    license_status: blocked_pending_explicit_license
+    classes: [good, defective]
+    image_count: 1839
+    image_count_note: Roboflow page reports 1,839 images and references a Kaggle source.
+    augmentation_version_inflation_risk: high
+    immediate_use_phase: hold
+    recommended_action: Hold until explicit Roboflow and original Kaggle license compatibility are verified.
+    label_mapping:
+      good: normal
+      defective: anomaly

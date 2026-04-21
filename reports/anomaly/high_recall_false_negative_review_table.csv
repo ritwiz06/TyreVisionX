@@ -1,0 +1,8 @@
+image_path,target,label_str,split,source_dataset,product_type,anomaly_score,threshold,pred,is_false_negative,is_false_positive
+/Users/ritik/Documents/Project TDA/TyreVisionX/data/raw/defect/Defective (136).jpg,1,defect,test,D1,tyre,0.8085595726966858,0.8168894052505493,0,1,0
+/Users/ritik/Documents/Project TDA/TyreVisionX/data/raw/defect/Defective (633).jpg,1,defect,test,D1,tyre,0.8141018390655518,0.8168894052505493,0,1,0
+/Users/ritik/Documents/Project TDA/TyreVisionX/data/raw/defect/Defective (454).jpg,1,defect,test,D1,tyre,0.7955791234970093,0.8168894052505493,0,1,0
+/Users/ritik/Documents/Project TDA/TyreVisionX/data/raw/defect/Defective (339).jpg,1,defect,test,D1,tyre,0.790049695968628,0.8168894052505493,0,1,0
+/Users/ritik/Documents/Project TDA/TyreVisionX/data/raw/defect/Defective (495).jpg,1,defect,test,D1,tyre,0.7521053194999695,0.8168894052505493,0,1,0
+/Users/ritik/Documents/Project TDA/TyreVisionX/data/raw/defect/Defective (201).jpg,1,defect,test,D1,tyre,0.7999783635139466,0.8168894052505493,0,1,0
+/Users/ritik/Documents/Project TDA/TyreVisionX/data/raw/defect/Defective (67).jpg,1,defect,test,D1,tyre,0.7776712894439697,0.8168894052505493,0,1,0

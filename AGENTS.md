@@ -44,9 +44,10 @@ Current validated focus:
 - research reporting
 
 Near-term research direction:
-- limited-data generalization
+- supervised baseline stabilization
+- anomaly detection trained on good-only tyre images
+- web-data curation with human review
 - cross-dataset robustness
-- anomaly detection
 - localization / segmentation
 
 Long-term roadmap:
@@ -57,9 +58,19 @@ Long-term roadmap:
 ## Documentation expectations
 Any major refactor should update:
 - README.md
-- docs/PROJECT_STATUS.md
-- logs/PROJECT_LOG.md
-- reports/project_status/repo_audit.md
+- docs/project/PROJECT_STATUS.md
+- docs/architecture/REPO_ARCHITECTURE.md
+- docs/project/ROADMAP.md
+- reports/current_status/repo_audit.md
+- reports/historical/REPORTED_RESULTS.md
+
+## Prompt logging expectations
+For substantial Codex work:
+- read docs/codex/BASE_CONTEXT.md first
+- read logs/work_logs/LATEST.md and logs/process_logs/LATEST.md when present
+- create a timestamped work log and process log
+- update latest log pointers
+- never fabricate experiment metrics
 
 ## Review expectations
 Before considering work done:

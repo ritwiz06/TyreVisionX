@@ -1,0 +1,60 @@
+benchmark:
+  name: d1_resnet50_patch_aware_benchmark_v1
+  description: >
+    Patch-aware anomaly benchmark using ResNet50 convolutional feature-map
+    descriptors and a normal-only nearest-neighbor patch memory.
+
+data:
+  normal_train_manifest: data/manifests/D1_anomaly_train_normal.csv
+  validation_manifest: data/manifests/D1_anomaly_val_mixed.csv
+  test_manifest: data/manifests/D1_anomaly_test_mixed.csv
+  image_size: [224, 224]
+  batch_size: 16
+  num_workers: 0
+  device: auto
+
+outputs:
+  root_dir: artifacts/anomaly/patch_aware
+  comparison_csv: reports/anomaly/patch_aware_model_comparison.csv
+  comparison_report: reports/anomaly/patch_aware_model_comparison.md
+
+variants:
+  - name: resnet50_knn_threshold_sweep_reference
+    reuse_from: artifacts/anomaly/local_features/resnet50_knn_threshold_sweep
+    notes: Current high-recall pooled-embedding reference.
+
+  - name: resnet50_featuremap_patch_knn
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    method: featuremap_patch_knn
+    feature_layer: layer4
+    aggregation: max
+    knn_k: 1
+    max_memory_patches: 10000
+    max_normal_fpr: 0.10
+    run_dir: artifacts/anomaly/patch_aware/resnet50_featuremap_patch_knn
+    notes: Feature-map patch memory with the same strict normal-FPR policy as earlier baselines.
+
+  - name: resnet50_featuremap_patch_knn_threshold_sweep
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    method: featuremap_patch_knn_threshold_sweep
+    feature_layer: layer4
+    aggregation: max
+    knn_k: 1
+    max_memory_patches: 10000
+    max_normal_fpr: 0.30
+    run_dir: artifacts/anomaly/patch_aware/resnet50_featuremap_patch_knn_threshold_sweep
+    notes: Same patch descriptors with recall-oriented validation threshold refinement.
+
+  - name: resnet50_patchcore_lite
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    method: patchcore_lite
+    feature_layer: layer4
+    aggregation: top3_mean
+    knn_k: 1
+    max_memory_patches: 5000
+    max_normal_fpr: 0.30
+    run_dir: artifacts/anomaly/patch_aware/resnet50_patchcore_lite
+    notes: Reduced memory-bank variant using top-3 patch-score aggregation.

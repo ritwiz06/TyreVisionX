@@ -1,0 +1,26 @@
+{
+  "status": "blocked_missing_approved_input",
+  "input_csv": null,
+  "output_dir": "data/interim/web_candidates/pilot_01",
+  "counts": {
+    "candidates": 0,
+    "downloaded": 0,
+    "kept": 0,
+    "review_needed": 0,
+    "rejected": 0
+  },
+  "pending": [
+    "Provide a reviewed/approved manual pilot CSV under data/external/manual_candidate_urls/.",
+    "Use approved_tyres_pilot_urls_template.csv as the schema."
+  ],
+  "outputs": {
+    "candidate_metadata": "data/interim/web_candidates/pilot_01/candidate_metadata.csv",
+    "downloaded_metadata": "data/interim/web_candidates/pilot_01/candidate_metadata_downloaded.csv",
+    "kept": "data/interim/web_candidates/pilot_01/candidates_kept.csv",
+    "rejected": "data/interim/web_candidates/pilot_01/candidates_rejected.csv",
+    "review_needed": "data/interim/web_candidates/pilot_01/candidates_review_needed.csv",
+    "review_queue": "data/interim/web_candidates/pilot_01/review_queue.csv",
+    "filter_summary": "data/interim/web_candidates/pilot_01/filter_summary.json",
+    "pilot_run_report": "reports/web_collection/pilot_run_report.md"
+  }
+}

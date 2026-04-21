@@ -1,0 +1,20 @@
+experiment:
+  name: d1_resnet18_mahalanobis_threshold_sweep_v1
+  status: planned_analysis
+  base_run: artifacts/anomaly/d1_resnet18_mahalanobis_v1
+
+threshold_sweep:
+  source_scores:
+    validation_predictions: artifacts/anomaly/d1_resnet18_mahalanobis_v1/predictions_validation.csv
+    test_predictions: artifacts/anomaly/d1_resnet18_mahalanobis_v1/predictions_test.csv
+  calibration_split: validation
+  evaluate_split_once: test
+  target_recall_grid: [0.80, 0.90, 0.95, 0.99]
+  max_normal_fpr_grid: [0.05, 0.10, 0.20, 0.30]
+  primary_metric: defect_recall
+  secondary_metric: normal_fpr
+  warning: "Use validation to choose thresholds. Do not tune on test."
+
+outputs:
+  report: reports/anomaly/anomaly_variant_plan.md
+  planned_csv: artifacts/anomaly/d1_resnet18_mahalanobis_v1/threshold_sweep_recall_targets.csv

@@ -1,0 +1,75 @@
+version: 1
+status: source_acquisition_config
+policy:
+  google_mode: manual_discovery_only
+  auto_labeling: forbidden
+  candidate_status: research_candidates_until_reviewed
+
+sources:
+  manufacturer_internal:
+    tier: 1
+    status: preferred_when_available
+    mode: manual_or_internal_export
+    requires_api_key: false
+    notes: Internal or manufacturer-approved tyre images have the strongest provenance when available.
+
+  wikimedia_commons:
+    tier: 2
+    status: ready_no_api_key
+    mode: official_api
+    endpoint: https://commons.wikimedia.org/w/api.php
+    requires_api_key: false
+    license_metadata_required: true
+    notes: Use the official Wikimedia Commons API and preserve license/attribution fields.
+
+  pexels:
+    tier: 3
+    status: pending_api_key
+    mode: official_api
+    endpoint: https://api.pexels.com/v1/search
+    api_key_env: PEXELS_API_KEY
+    requires_api_key: true
+    license_metadata_required: true
+    notes: Use only with a user-provided API key and provider terms review.
+
+  unsplash:
+    tier: 3
+    status: pending_api_key
+    mode: official_api
+    endpoint: https://api.unsplash.com/search/photos
+    access_key_env: UNSPLASH_ACCESS_KEY
+    requires_api_key: true
+    license_metadata_required: true
+    notes: Use only with a user-provided access key and provider terms review.
+
+  flickr:
+    tier: 3
+    status: pending_api_key
+    mode: official_api
+    endpoint: https://www.flickr.com/services/rest/
+    api_key_env: FLICKR_API_KEY
+    requires_api_key: true
+    license_metadata_required: true
+    notes: Use only with a user-provided API key and license filters.
+
+  manual_google_discovery:
+    tier: 4
+    status: ready_manual_csv
+    mode: researcher_prepared_csv
+    requires_api_key: false
+    input_template: data/external/manual_candidate_urls/manual_google_discovery_template.csv
+    notes: Google is manual discovery only. Do not scrape Google HTML or automate result extraction.
+
+metadata_required:
+  - provider
+  - query_id
+  - query_text
+  - source_url
+  - page_url
+  - license_name
+  - license_url
+  - attribution_text
+  - retrieval_timestamp
+  - product_type
+  - view_type
+  - notes

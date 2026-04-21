@@ -1,0 +1,2 @@
+candidate_id,local_raw_path,source_url,page_url,query_text,quality_status,anomaly_score,anomaly_triage_bucket,human_review_status,review_notes,product_type
+example_candidate_id,data/external/web_raw/example.jpg,https://example.com/image.jpg,https://example.com/page,clean tyre sidewall close up,kept,,not_scored,pending_review,,tyre

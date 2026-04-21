@@ -1,0 +1,11 @@
+{
+  "count": 93,
+  "score_min": 9.01895191441506,
+  "score_max": 12.137679785506592,
+  "score_mean": 10.885576388758198,
+  "threshold": 12.147390651173238,
+  "mean_margin_below_threshold": 1.261814262415042,
+  "near_threshold_count": 43,
+  "far_below_threshold_count": 2,
+  "contact_sheet_written": true
+}

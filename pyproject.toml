@@ -22,3 +22,7 @@ exclude = [".venv", "build", "dist"]
 combine-as-imports = true
 force-single-line = false
 known-first-party = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = [".venv", "Archive", "artifacts", "data", "notebooks"]

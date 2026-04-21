@@ -1,0 +1,38 @@
+experiment:
+  name: d1_resnet18_knn_v1
+  status: planned_next_variant
+  base_run: artifacts/anomaly/d1_resnet18_mahalanobis_v1
+
+data:
+  normal_train_manifest: data/manifests/D1_anomaly_train_normal.csv
+  validation_manifest: data/manifests/D1_anomaly_val_mixed.csv
+  test_manifest: data/manifests/D1_anomaly_test_mixed.csv
+  image_size: [224, 224]
+  batch_size: 32
+  num_workers: 0
+  device: auto
+
+feature_extractor:
+  backbone: resnet18
+  pretrained: true
+  weights_path: null
+  freeze: true
+  layer: avgpool
+
+embedding:
+  method: pooled_penultimate
+  normalize: true
+
+scoring:
+  method: knn
+  knn_k: 5
+
+threshold_policy:
+  selection_split: validation
+  primary: maximize_anomaly_recall_subject_to_normal_fpr
+  max_normal_fpr: 0.10
+  fallback: maximize_f1
+
+outputs:
+  run_dir: artifacts/anomaly/d1_resnet18_knn_v1
+  report: reports/anomaly/anomaly_variant_plan.md

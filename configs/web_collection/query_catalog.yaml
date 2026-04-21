@@ -1,0 +1,701 @@
+catalog_version: 1
+status: editable_seed_catalog
+policy: Use only with approved providers or manual workflows; do not scrape Google
+  HTML.
+queries:
+- query_id: tyre_clean_sidewall_01
+  query_text: clean tyre sidewall close up studio product photo
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: sidewall
+  condition_adjective: clean undamaged new
+  environment_context: studio product photo
+  positive_keywords:
+  - clean tyre sidewall close up
+  - studio product photo
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 1
+  intended_use: candidate_likely_normal_review
+  notes: Targets undamaged sidewall texture and lettering.
+- query_id: tyre_clean_sidewall_02
+  query_text: clean tyre sidewall close up inspection lighting
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: sidewall
+  condition_adjective: clean undamaged new
+  environment_context: inspection lighting
+  positive_keywords:
+  - clean tyre sidewall close up
+  - inspection lighting
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 1
+  intended_use: candidate_likely_normal_review
+  notes: Targets undamaged sidewall texture and lettering.
+- query_id: tyre_clean_sidewall_03
+  query_text: clean tyre sidewall close up factory inspection
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: sidewall
+  condition_adjective: clean undamaged new
+  environment_context: factory inspection
+  positive_keywords:
+  - clean tyre sidewall close up
+  - factory inspection
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 2
+  intended_use: candidate_likely_normal_review
+  notes: Targets undamaged sidewall texture and lettering.
+- query_id: tyre_clean_sidewall_04
+  query_text: clean tyre sidewall close up plain background
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: sidewall
+  condition_adjective: clean undamaged new
+  environment_context: plain background
+  positive_keywords:
+  - clean tyre sidewall close up
+  - plain background
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 2
+  intended_use: candidate_likely_normal_review
+  notes: Targets undamaged sidewall texture and lettering.
+- query_id: tyre_new_tread_closeup_01
+  query_text: new tyre tread close up macro photo
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: tread
+  condition_adjective: clean undamaged new
+  environment_context: macro photo
+  positive_keywords:
+  - new tyre tread close up
+  - macro photo
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 1
+  intended_use: candidate_likely_normal_review
+  notes: Targets clean tread grooves and normal pattern repetition.
+- query_id: tyre_new_tread_closeup_02
+  query_text: new tyre tread close up product catalog
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: tread
+  condition_adjective: clean undamaged new
+  environment_context: product catalog
+  positive_keywords:
+  - new tyre tread close up
+  - product catalog
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 1
+  intended_use: candidate_likely_normal_review
+  notes: Targets clean tread grooves and normal pattern repetition.
+- query_id: tyre_new_tread_closeup_03
+  query_text: new tyre tread close up inspection view
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: tread
+  condition_adjective: clean undamaged new
+  environment_context: inspection view
+  positive_keywords:
+  - new tyre tread close up
+  - inspection view
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 2
+  intended_use: candidate_likely_normal_review
+  notes: Targets clean tread grooves and normal pattern repetition.
+- query_id: tyre_new_tread_closeup_04
+  query_text: new tyre tread close up high resolution
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: tread
+  condition_adjective: clean undamaged new
+  environment_context: high resolution
+  positive_keywords:
+  - new tyre tread close up
+  - high resolution
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 2
+  intended_use: candidate_likely_normal_review
+  notes: Targets clean tread grooves and normal pattern repetition.
+- query_id: tyre_off_highway_exterior_01
+  query_text: off highway tyre exterior undamaged industrial vehicle
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: exterior
+  condition_adjective: clean undamaged new
+  environment_context: industrial vehicle
+  positive_keywords:
+  - off highway tyre exterior undamaged
+  - industrial vehicle
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 1
+  intended_use: candidate_likely_normal_review
+  notes: Adds larger industrial/off-highway tyre appearances.
+- query_id: tyre_off_highway_exterior_02
+  query_text: off highway tyre exterior undamaged warehouse
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: exterior
+  condition_adjective: clean undamaged new
+  environment_context: warehouse
+  positive_keywords:
+  - off highway tyre exterior undamaged
+  - warehouse
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 1
+  intended_use: candidate_likely_normal_review
+  notes: Adds larger industrial/off-highway tyre appearances.
+- query_id: tyre_off_highway_exterior_03
+  query_text: off highway tyre exterior undamaged product photo
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: exterior
+  condition_adjective: clean undamaged new
+  environment_context: product photo
+  positive_keywords:
+  - off highway tyre exterior undamaged
+  - product photo
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 2
+  intended_use: candidate_likely_normal_review
+  notes: Adds larger industrial/off-highway tyre appearances.
+- query_id: tyre_off_highway_exterior_04
+  query_text: off highway tyre exterior undamaged inspection
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: exterior
+  condition_adjective: clean undamaged new
+  environment_context: inspection
+  positive_keywords:
+  - off highway tyre exterior undamaged
+  - inspection
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 2
+  intended_use: candidate_likely_normal_review
+  notes: Adds larger industrial/off-highway tyre appearances.
+- query_id: tyre_mounted_product_01
+  query_text: mounted tyre product photo new vehicle wheel
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: mounted_wheel
+  condition_adjective: clean undamaged new
+  environment_context: vehicle wheel
+  positive_keywords:
+  - mounted tyre product photo new
+  - vehicle wheel
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 1
+  intended_use: candidate_likely_normal_review
+  notes: Targets mounted but visibly undamaged tyres.
+- query_id: tyre_mounted_product_02
+  query_text: mounted tyre product photo new studio
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: mounted_wheel
+  condition_adjective: clean undamaged new
+  environment_context: studio
+  positive_keywords:
+  - mounted tyre product photo new
+  - studio
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 1
+  intended_use: candidate_likely_normal_review
+  notes: Targets mounted but visibly undamaged tyres.
+- query_id: tyre_mounted_product_03
+  query_text: mounted tyre product photo new catalog
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: mounted_wheel
+  condition_adjective: clean undamaged new
+  environment_context: catalog
+  positive_keywords:
+  - mounted tyre product photo new
+  - catalog
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 2
+  intended_use: candidate_likely_normal_review
+  notes: Targets mounted but visibly undamaged tyres.
+- query_id: tyre_mounted_product_04
+  query_text: mounted tyre product photo new side view
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: mounted_wheel
+  condition_adjective: clean undamaged new
+  environment_context: side view
+  positive_keywords:
+  - mounted tyre product photo new
+  - side view
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 2
+  intended_use: candidate_likely_normal_review
+  notes: Targets mounted but visibly undamaged tyres.
+- query_id: tyre_industrial_surface_01
+  query_text: industrial tyre surface close up clean manufacturing
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: surface_closeup
+  condition_adjective: clean undamaged new
+  environment_context: manufacturing
+  positive_keywords:
+  - industrial tyre surface close up clean
+  - manufacturing
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 3
+  intended_use: candidate_likely_normal_review
+  notes: Targets industrial surface texture with fewer consumer-photo distractions.
+- query_id: tyre_industrial_surface_02
+  query_text: industrial tyre surface close up clean warehouse
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: surface_closeup
+  condition_adjective: clean undamaged new
+  environment_context: warehouse
+  positive_keywords:
+  - industrial tyre surface close up clean
+  - warehouse
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 3
+  intended_use: candidate_likely_normal_review
+  notes: Targets industrial surface texture with fewer consumer-photo distractions.
+- query_id: tyre_industrial_surface_03
+  query_text: industrial tyre surface close up clean inspection light
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: surface_closeup
+  condition_adjective: clean undamaged new
+  environment_context: inspection light
+  positive_keywords:
+  - industrial tyre surface close up clean
+  - inspection light
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 3
+  intended_use: candidate_likely_normal_review
+  notes: Targets industrial surface texture with fewer consumer-photo distractions.
+- query_id: tyre_industrial_surface_04
+  query_text: industrial tyre surface close up clean macro
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: surface_closeup
+  condition_adjective: clean undamaged new
+  environment_context: macro
+  positive_keywords:
+  - industrial tyre surface close up clean
+  - macro
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 3
+  intended_use: candidate_likely_normal_review
+  notes: Targets industrial surface texture with fewer consumer-photo distractions.
+- query_id: tyre_undamaged_inspection_01
+  query_text: undamaged tyre inspection view sidewall
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: inspection
+  condition_adjective: clean undamaged new
+  environment_context: sidewall
+  positive_keywords:
+  - undamaged tyre inspection view
+  - sidewall
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 3
+  intended_use: candidate_likely_normal_review
+  notes: Targets images that resemble inspection views.
+- query_id: tyre_undamaged_inspection_02
+  query_text: undamaged tyre inspection view tread
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: inspection
+  condition_adjective: clean undamaged new
+  environment_context: tread
+  positive_keywords:
+  - undamaged tyre inspection view
+  - tread
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 3
+  intended_use: candidate_likely_normal_review
+  notes: Targets images that resemble inspection views.
+- query_id: tyre_undamaged_inspection_03
+  query_text: undamaged tyre inspection view factory
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: inspection
+  condition_adjective: clean undamaged new
+  environment_context: factory
+  positive_keywords:
+  - undamaged tyre inspection view
+  - factory
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 3
+  intended_use: candidate_likely_normal_review
+  notes: Targets images that resemble inspection views.
+- query_id: tyre_undamaged_inspection_04
+  query_text: undamaged tyre inspection view quality control
+  product_family: tyre
+  domain: manufacturing_inspection
+  view_type: inspection
+  condition_adjective: clean undamaged new
+  environment_context: quality control
+  positive_keywords:
+  - undamaged tyre inspection view
+  - quality control
+  - tyre
+  negative_keywords:
+  - damage
+  - damaged
+  - cracked
+  - crack
+  - puncture
+  - burst
+  - worn out
+  - scrap
+  - used
+  - failure
+  - defect
+  - flat tire
+  - accident
+  language: en
+  priority: 3
+  intended_use: candidate_likely_normal_review
+  notes: Targets images that resemble inspection views.

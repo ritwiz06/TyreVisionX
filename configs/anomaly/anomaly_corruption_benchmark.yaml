@@ -1,0 +1,77 @@
+benchmark:
+  name: d1_resnet50_anomaly_corruption_benchmark_v1
+  status: controlled_corruption_evaluation
+  notes: "Use clean validation-selected thresholds. Do not retune on corrupted test."
+
+data:
+  validation_manifest: data/manifests/D1_anomaly_val_mixed.csv
+  test_manifest: data/manifests/D1_anomaly_test_mixed.csv
+  image_size: [224, 224]
+  batch_size: 32
+  num_workers: 0
+  device: auto
+
+variants:
+  - name: resnet50_knn
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    scorer: knn
+    artifact_dir: artifacts/anomaly/benchmark/resnet50_knn
+
+  - name: resnet50_mahalanobis
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    scorer: mahalanobis
+    artifact_dir: artifacts/anomaly/benchmark/resnet50_mahalanobis
+
+  - name: resnet18_knn_control
+    backbone: resnet18
+    weights_path: /Users/ritik/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth
+    scorer: knn
+    artifact_dir: artifacts/anomaly/benchmark/resnet18_knn
+
+corruptions:
+  - name: clean
+    family: clean
+    level: clean
+    params: {}
+  - name: gaussian_noise_low
+    family: gaussian_noise
+    level: low
+    params: {sigma: 6.0}
+  - name: gaussian_noise_medium
+    family: gaussian_noise
+    level: medium
+    params: {sigma: 12.0}
+  - name: gaussian_blur_low
+    family: gaussian_blur
+    level: low
+    params: {kernel: 3, sigma: 0.6}
+  - name: gaussian_blur_medium
+    family: gaussian_blur
+    level: medium
+    params: {kernel: 5, sigma: 1.0}
+  - name: jpeg_compression_mild
+    family: jpeg_compression
+    level: mild
+    params: {quality: 85}
+  - name: brightness_darker
+    family: brightness_shift
+    level: darker
+    params: {beta: -25}
+  - name: brightness_brighter
+    family: brightness_shift
+    level: brighter
+    params: {beta: 25}
+  - name: contrast_lower
+    family: contrast_shift
+    level: lower
+    params: {alpha: 0.82}
+  - name: contrast_higher
+    family: contrast_shift
+    level: higher
+    params: {alpha: 1.18}
+
+outputs:
+  corruption_csv: reports/anomaly/corruption_benchmark.csv
+  corruption_report: reports/anomaly/corruption_benchmark.md

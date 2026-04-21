@@ -1,0 +1,94 @@
+benchmark:
+  name: d1_anomaly_backbone_scorer_benchmark_v1
+  status: controlled_tyrefirst_comparison
+  notes: "Fit on normal train, calibrate on validation only, evaluate test once."
+
+base_run_config:
+  experiment:
+    name: placeholder
+    seed: 42
+  data:
+    normal_train_manifest: data/manifests/D1_anomaly_train_normal.csv
+    validation_manifest: data/manifests/D1_anomaly_val_mixed.csv
+    test_manifest: data/manifests/D1_anomaly_test_mixed.csv
+    image_path_column: image_path
+    target_column: target
+    normal_label: 0
+    anomaly_label: 1
+    image_size: [224, 224]
+    batch_size: 32
+    num_workers: 0
+    device: auto
+  feature_extractor:
+    backbone: resnet18
+    pretrained: true
+    weights_path: null
+    freeze: true
+    layer: avgpool
+  embedding:
+    method: pooled_penultimate
+    normalize: true
+  scoring:
+    method: mahalanobis
+    regularization: 0.001
+    knn_k: 5
+  threshold_policy:
+    selection_split: validation
+    primary: maximize_anomaly_recall_subject_to_normal_fpr
+    max_normal_fpr: 0.10
+    fallback: maximize_f1
+  outputs:
+    run_dir: artifacts/anomaly/placeholder
+
+variants:
+  - name: resnet18_mahalanobis_reference
+    reuse_from: artifacts/anomaly/d1_resnet18_mahalanobis_v1
+    backbone: resnet18
+    scorer: mahalanobis
+    embedding_type: pooled_penultimate
+    threshold_policy: recall_priority_fpr_0.10
+
+  - name: resnet18_knn
+    backbone: resnet18
+    weights_path: /Users/ritik/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth
+    scorer: knn
+    knn_k: 5
+    embedding_type: pooled_penultimate
+    run_dir: artifacts/anomaly/benchmark/resnet18_knn
+
+  - name: resnet18_threshold_sweep
+    mode: threshold_sweep
+    source_run: artifacts/anomaly/d1_resnet18_mahalanobis_v1
+    backbone: resnet18
+    scorer: mahalanobis
+    embedding_type: pooled_penultimate
+    max_normal_fpr: 0.30
+    run_dir: artifacts/anomaly/benchmark/resnet18_threshold_sweep
+
+  - name: resnet50_mahalanobis
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    scorer: mahalanobis
+    embedding_type: pooled_penultimate
+    run_dir: artifacts/anomaly/benchmark/resnet50_mahalanobis
+
+  - name: resnet50_knn
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    scorer: knn
+    knn_k: 5
+    embedding_type: pooled_penultimate
+    run_dir: artifacts/anomaly/benchmark/resnet50_knn
+
+  - name: resnet18_patch_grid_knn
+    backbone: resnet18
+    weights_path: /Users/ritik/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth
+    scorer: knn
+    knn_k: 5
+    embedding_type: patch_grid
+    run_dir: artifacts/anomaly/benchmark/resnet18_patch_grid_knn
+
+outputs:
+  root_dir: artifacts/anomaly/benchmark
+  comparison_csv: reports/anomaly/model_comparison.csv
+  comparison_report: reports/anomaly/model_comparison.md

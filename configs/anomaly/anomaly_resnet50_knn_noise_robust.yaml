@@ -1,0 +1,49 @@
+experiment:
+  name: d1_resnet50_knn_noise_robust_v1
+  status: mild_noise_robust_variant
+
+data:
+  normal_train_manifest: data/manifests/D1_anomaly_train_normal.csv
+  validation_manifest: data/manifests/D1_anomaly_val_mixed.csv
+  test_manifest: data/manifests/D1_anomaly_test_mixed.csv
+  image_size: [224, 224]
+  batch_size: 32
+  num_workers: 0
+  device: auto
+
+feature_extractor:
+  backbone: resnet50
+  pretrained: true
+  weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+  freeze: true
+
+scoring:
+  method: knn
+  knn_k: 5
+
+threshold_policy:
+  selection_split: validation
+  primary: maximize_anomaly_recall_subject_to_normal_fpr
+  max_normal_fpr: 0.10
+  fallback: maximize_f1
+
+train_augmentations:
+  - name: train_gaussian_noise_low
+    family: gaussian_noise
+    level: low
+    params: {sigma: 5.0}
+  - name: train_gaussian_blur_low
+    family: gaussian_blur
+    level: low
+    params: {kernel: 3, sigma: 0.45}
+  - name: train_brightness_slight_dark
+    family: brightness_shift
+    level: slight_dark
+    params: {beta: -15}
+  - name: train_contrast_slight_low
+    family: contrast_shift
+    level: slight_low
+    params: {alpha: 0.9}
+
+outputs:
+  run_dir: artifacts/anomaly/robustness/resnet50_knn_noise_robust

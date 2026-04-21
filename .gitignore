@@ -26,8 +26,15 @@ ENV/
 *.swo
 
 # Logs and artifacts
-artifacts/
-logs/
+/artifacts/
+/logs/
+!/logs/
+!/logs/work_logs/
+!/logs/work_logs/*.md
+!/logs/process_logs/
+!/logs/process_logs/*.md
+!/logs/experiment_logs/
+!/logs/experiment_logs/*.md
 *.log
 *.tmp
 
@@ -37,9 +44,21 @@ data/raw/
 data/processed/
 !data/README.md
 !data/manifests/
+!data/external/
+!data/external/README.md
+!data/external/manual_candidate_urls/
+!data/external/manual_candidate_urls/README.md
+!data/external/manual_candidate_urls/approved_tyres_pilot_urls_template.csv
+!data/external/manual_candidate_urls/approved_tyres_pilot_urls_001_prefilled.csv
+!data/external/manual_candidate_urls/manual_google_discovery_template.csv
+!data/interim/
+!data/interim/README.md
 *.csv
 !data/manifests/*.csv
 !docs/progress_log.csv
+!reports/web_collection/*.csv
+!reports/anomaly/*.csv
+!reports/anomaly/*.json
 *.tsv
 *.xlsx
 !docs/progress_log.xlsx
@@ -66,14 +85,19 @@ Thumbs.db
 
 # Notebooks
 *.ipynb
-!notebooks/
-!notebooks/dataset_exploration.ipynb
+!/notebooks/
+!/notebooks/dataset_exploration.ipynb
+!/notebooks/**/*.ipynb
 .ipynb_checkpoints/
 
 # Reports
-reports/
-!reports/
-!reports/dataset_report.md
+/reports/
+!/reports/
+!/reports/dataset_report.md
+!/reports/**/*.md
+
+# Local archive copy
+/Archive/
 
 # dotenv
 .env.local

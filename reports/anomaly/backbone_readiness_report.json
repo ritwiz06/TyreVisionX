@@ -1,0 +1,67 @@
+{
+  "cache_dirs": [
+    "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/.torch/hub/checkpoints",
+    "/Users/ritik/.cache/torch/hub/checkpoints"
+  ],
+  "backbones": [
+    {
+      "backbone": "resnet18",
+      "source_type": "torchvision_cache",
+      "local_path": "/Users/ritik/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth",
+      "runnable_now": true,
+      "code_support_exists": true,
+      "expected_files": [
+        "resnet18-f37072fd.pth"
+      ],
+      "notes": "Reference backbone; already used for the first D1 anomaly run."
+    },
+    {
+      "backbone": "resnet50",
+      "source_type": "torchvision_cache",
+      "local_path": "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth",
+      "runnable_now": true,
+      "code_support_exists": true,
+      "expected_files": [
+        "resnet50-11ad3fa6.pth"
+      ],
+      "notes": "Larger ResNet; may improve semantic features but still uses global pooling unless patch mode is enabled."
+    },
+    {
+      "backbone": "efficientnet_b0",
+      "source_type": "missing_local_weights",
+      "local_path": null,
+      "runnable_now": false,
+      "code_support_exists": false,
+      "expected_files": [
+        "efficientnet_b0_rwightman-7f5810bc.pth"
+      ],
+      "notes": "Potential compact CNN backbone; pending local weights and extractor support. Local weights not found."
+    },
+    {
+      "backbone": "convnext_tiny",
+      "source_type": "missing_local_weights",
+      "local_path": null,
+      "runnable_now": false,
+      "code_support_exists": false,
+      "expected_files": [
+        "convnext_tiny-983f1562.pth"
+      ],
+      "notes": "Modern CNN family; pending local weights and extractor support. Local weights not found."
+    },
+    {
+      "backbone": "vit_b_16",
+      "source_type": "missing_local_weights",
+      "local_path": null,
+      "runnable_now": false,
+      "code_support_exists": false,
+      "expected_files": [
+        "vit_b_16-c867db91.pth"
+      ],
+      "notes": "Transformer backbone; pending local weights and extractor support. Local weights not found."
+    }
+  ],
+  "cached_weight_files": [
+    "/Users/ritik/Documents/Project TDA/TyreVisionX/artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth",
+    "/Users/ritik/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth"
+  ]
+}

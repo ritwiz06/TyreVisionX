@@ -1,0 +1,60 @@
+benchmark:
+  name: d1_resnet50_local_feature_benchmark_v1
+  description: >
+    Tyre-first local-feature anomaly benchmark. This keeps the current
+    ResNet50 kNN run as the clean reference and tests whether local evidence
+    reduces false negatives on D1.
+
+data:
+  normal_train_manifest: data/manifests/D1_anomaly_train_normal.csv
+  validation_manifest: data/manifests/D1_anomaly_val_mixed.csv
+  test_manifest: data/manifests/D1_anomaly_test_mixed.csv
+  image_size: [224, 224]
+  batch_size: 16
+  num_workers: 0
+  device: auto
+
+outputs:
+  root_dir: artifacts/anomaly/local_features
+  comparison_csv: reports/anomaly/local_feature_model_comparison.csv
+  comparison_report: reports/anomaly/local_feature_model_comparison.md
+
+variants:
+  - name: resnet50_knn_reference
+    reuse_from: artifacts/anomaly/benchmark/resnet50_knn
+    backbone: resnet50
+    scorer: knn
+    local_mode: none
+    notes: Reused clean ResNet50 kNN benchmark result.
+
+  - name: resnet50_knn_threshold_sweep
+    mode: threshold_sweep
+    source_run: artifacts/anomaly/benchmark/resnet50_knn
+    run_dir: artifacts/anomaly/local_features/resnet50_knn_threshold_sweep
+    max_normal_fpr: 0.30
+    threshold_policy: validation_threshold_sweep_fpr_0.30
+    notes: Validation-only threshold refinement on the existing ResNet50 kNN scores.
+
+  - name: resnet50_multicrop_knn
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    scorer: knn
+    knn_k: 5
+    local_mode: multicrop
+    crop_fraction: 0.82
+    aggregation: max
+    max_normal_fpr: 0.10
+    run_dir: artifacts/anomaly/local_features/resnet50_multicrop_knn
+    notes: Full image plus center and corner crops; max crop anomaly score becomes the image score.
+
+  - name: resnet50_patch_grid_knn_fine
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    scorer: knn
+    knn_k: 5
+    local_mode: patch_grid_fine
+    grid_size: 3
+    aggregation: max
+    max_normal_fpr: 0.10
+    run_dir: artifacts/anomaly/local_features/resnet50_patch_grid_knn_fine
+    notes: Full image plus 3x3 local patches; max patch anomaly score becomes the image score.

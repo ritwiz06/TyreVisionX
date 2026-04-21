@@ -1,0 +1,48 @@
+benchmark:
+  name: d1_resnet50_layer3_patch_benchmark_v1
+  description: Layer3 patch-memory benchmark with validation-normal robust score normalization.
+
+data:
+  normal_train_manifest: data/manifests/D1_anomaly_train_normal.csv
+  validation_manifest: data/manifests/D1_anomaly_val_mixed.csv
+  test_manifest: data/manifests/D1_anomaly_test_mixed.csv
+  image_size: [224, 224]
+  batch_size: 16
+  num_workers: 0
+  device: auto
+
+outputs:
+  root_dir: artifacts/anomaly/patch_layers
+  comparison_csv: reports/anomaly/patch_layer_benchmark_layer3.csv
+  comparison_report: reports/anomaly/patch_layer_benchmark_layer3.md
+
+variants:
+  - name: resnet50_knn_threshold_sweep_reference
+    reuse_from: artifacts/anomaly/local_features/resnet50_knn_threshold_sweep
+    notes: Current high-recall pooled-embedding reference.
+
+  - name: resnet50_layer3_patch_knn
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    method: layer3_patch_knn
+    feature_layer: layer3
+    aggregation: max
+    score_normalization: true
+    knn_k: 1
+    max_patches_per_image: 64
+    max_memory_patches: 12000
+    max_normal_fpr: 0.10
+    run_dir: artifacts/anomaly/patch_layers/resnet50_layer3_patch_knn
+
+  - name: resnet50_layer3_patch_knn_threshold_sweep
+    backbone: resnet50
+    weights_path: artifacts/.torch/hub/checkpoints/resnet50-11ad3fa6.pth
+    method: layer3_patch_knn_threshold_sweep
+    feature_layer: layer3
+    aggregation: top3_mean
+    score_normalization: true
+    knn_k: 1
+    max_patches_per_image: 64
+    max_memory_patches: 12000
+    max_normal_fpr: 0.30
+    run_dir: artifacts/anomaly/patch_layers/resnet50_layer3_patch_knn_threshold_sweep

@@ -1,236 +1,348 @@
 # TyreVisionX
 
-TyreVisionX is an early-stage academic research prototype for tyre defect inspection. The repository currently supports supervised binary classification of tyre images and basic research reporting utilities. It is not a production inspection system, and several future directions remain experimental or planned rather than validated.
+TyreVisionX is an early-stage graduate research repository for tyre inspection using computer vision and machine learning.
 
-## Current Maturity
-- Stage: early academic research prototype
-- Validated focus: manifests, supervised binary classification, evaluation, error analysis, research reporting
-- Not yet validated as a full platform for multi-dataset robustness, localization, segmentation, or deployment-grade serving
+The project began as a supervised binary classifier for tyre images:
 
-## Research Motivation
-The project targets defect-sensitive tyre inspection where missed defects matter more than cosmetic false alarms. The current codebase is structured to support reproducible classification experiments first, then expand into robustness studies, anomaly detection, and localization-oriented work.
+- `good = 0`
+- `defect = 1`
 
-## Implemented Now
-- Config-driven training and evaluation for binary classification
-- ResNet-18 and ResNet-34 classification configs
-- Canonical manifest-driven dataset loading under `src/data/`
-- Confusion matrix and ROC/PR report generation
-- FastAPI inference endpoint and Streamlit QA app
-- Batch inference and export utilities
-- Historical baseline path for SimpleCNN and frozen-feature experiments
-- Project status reports, decisions log, changelog, and experiment log
+The current research direction adds a planned good-only anomaly-detection track. That future track will learn normal tyre appearance from good images and score unusual images as likely anomalies. It may later help curate additional likely-good tyre images collected from approved web sources.
 
-## Current Limitations
-- D1 is the only dataset with a populated tracked manifest in this checkout
-- D2 and D3 remain scaffolded in config but not populated with tracked manifests
-- Historical baseline results are stronger documented than current canonical experiment artifacts
-- Service tests require optional multipart support in the environment
-- Legacy baseline code is retained for reproducibility and comparison, not as the canonical pipeline
+This repository is not a production inspection system. It is a research codebase with implemented supervised-baseline work, historical experiments, an executed first anomaly baseline, and early web-curation tooling.
 
-## Repository Structure
+## Current Status
+
+Implemented now:
+- supervised binary classification pipeline
+- manifest-based data loading
+- ResNet training/evaluation configs
+- historical SimpleCNN and frozen-feature baseline work
+- first good-only anomaly baseline code path and D1 execution
+- evaluation utilities and baseline reports
+- organized project docs, notebooks, and logs
+
+Partial or experimental:
+- legacy Day 3 / Day 5 baseline scripts
+- multi-dataset support beyond the current local D1 data
+- CNN to GNN experiment path
+- FastAPI and Streamlit utilities that depend on available checkpoints
+
+Planned:
+- anomaly false-negative review and stronger anomaly experiments
+- web-data curation workflow execution with real approved candidate URLs
+- localization and segmentation
+- multi-view / 3D / knowledge-reasoning research
+
+## Cleaned Repository Structure
+
 ```text
 TyreVisionX/
-├── configs/
-│   ├── aug/
-│   │   ├── light.yaml
-│   │   └── strong.yaml
-│   ├── data/
-│   │   └── datasets.yaml
-│   ├── train/
-│   │   ├── train_resnet18.yaml
-│   │   └── train_resnet34.yaml
-│   ├── aug_light.yaml            # compatibility copy
-│   ├── aug_strong.yaml           # compatibility copy
-│   ├── data.yaml                 # compatibility copy
-│   ├── train_resnet18.yaml       # compatibility copy
-│   └── train_resnet34.yaml       # compatibility copy
-├── data/
-│   ├── manifests/
-│   ├── processed/
-│   ├── raw/
-│   └── README.md
-├── docs/
-│   ├── ARCHITECTURE.md
-│   ├── PROJECT_STATUS.md
-│   ├── codex/
-│   └── project/
-├── logs/
-│   ├── CHANGELOG.md
-│   ├── DECISIONS.md
-│   ├── EXPERIMENT_LOG.md
-│   └── TODO_NEXT.md
-├── reports/
-│   ├── project_status/
-│   │   ├── current_status.md
-│   │   └── repo_audit.md
-│   └── research_notes/
-│       └── concepts_used.md
-├── scripts/
-├── src/
-│   ├── data/                     # canonical data path
-│   ├── legacy/                   # archived baseline namespace
-│   ├── models/
-│   ├── utils/
-│   ├── train.py                  # canonical training entry point
-│   ├── evaluate.py               # canonical evaluation entry point
-│   ├── service_fastapi.py
-│   └── app_streamlit.py
-├── tests/
-├── artifacts/                    # generated outputs only, mostly gitignored
-├── AGENTS.md
-├── PROGRESS_LOG.md
-├── Makefile
-├── pyproject.toml
-└── requirements.txt
+  configs/
+    aug/                  # existing supervised augmentation configs
+    data/                 # supervised dataset config
+    train/                # supervised train configs
+    anomaly/              # anomaly config scaffold
+    web_collection/       # web-curation config scaffold
+  data/
+    manifests/            # manifest CSVs
+    external/             # future external/raw collected data
+    interim/              # future intermediate data products
+    processed/            # legacy processed manifest path
+    raw/                  # local raw image data, gitignored
+  docs/
+    architecture/
+    codex/
+    process/
+    project/
+  logs/
+    work_logs/
+    process_logs/
+    experiment_logs/
+  notebooks/
+    00_project_overview/
+    01_data_audit/
+    02_supervised_baseline/
+    03_anomaly_baseline/
+    04_web_data_curation/
+    05_results/
+  reports/
+    current_status/
+    historical/
+    anomaly/
+    web_collection/
+  scripts/
+    anomaly/
+    data/
+    utilities/
+  src/
+    anomaly/
+    data/
+    evaluation/
+    legacy/
+    models/
+    training/
+    utils/
+  tests/
 ```
 
-## Canonical Pipeline
-The canonical current pipeline is the config-driven classification path:
+Some older files and folders remain for compatibility and historical traceability. They are preserved intentionally rather than deleted.
 
-1. Dataset config: `configs/data/datasets.yaml`
-2. Training config: `configs/train/train_resnet18.yaml` or `configs/train/train_resnet34.yaml`
-3. Training entry point: `python -m src.train`
-4. Evaluation entry point: `python -m src.evaluate`
-5. Dataset loading: `src/data/datasets.py`
-6. Transforms: `src/data/transforms.py`
+## Canonical Supervised Track
 
-Legacy baseline components are archived under `src/legacy/` and kept for historical reproducibility.
+Use this path for current supervised classification work:
 
-## Quickstart
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-make setup
-```
+- dataset config: `configs/data/datasets.yaml`
+- train configs: `configs/train/train_resnet18.yaml`, `configs/train/train_resnet34.yaml`
+- data loader: `src/data/datasets.py`
+- transforms: `src/data/transforms.py`
+- training: `src/train.py`
+- evaluation: `src/evaluate.py`
 
-## Data Preparation Workflow
-Dataset guidance:
-- D1 TyreNet should be placed under `data/D1_tyrenet/`
-- D2 should be placed under `data/D2_tire_crack/`
-- D3 should be placed under `data/D3_tyre_quality/`
+Train:
 
-Download guidance:
-```bash
-python scripts/download_datasets.py
-```
-
-Prepare the canonical D1 manifest:
-```bash
-python scripts/prepare_manifests.py \
-  --dataset_root data/D1_tyrenet \
-  --dataset_id D1 \
-  --good_dir good \
-  --defect_dir defect \
-  --out_csv data/manifests/D1_tyrenet_manifest.csv
-```
-
-Refresh split columns for configured manifests:
-```bash
-python scripts/prepare_folds.py --config configs/data/datasets.yaml
-```
-
-## Training Workflow
-Default canonical training command:
-```bash
-make train
-```
-
-Explicit command:
 ```bash
 python -m src.train --config configs/train/train_resnet18.yaml
 ```
 
-Alternative active model:
-```bash
-python -m src.train --config configs/train/train_resnet34.yaml
-```
+Evaluate:
 
-## Evaluation Workflow
 ```bash
 python -m src.evaluate \
   --checkpoint artifacts/experiments/resnet18_tyrenet_v1/best.pt \
   --split test
 ```
 
-The evaluation path uses the same runtime dataset contract as training. Direct-manifest fallback is still supported for compatibility, but the canonical path is the dataset config plus manifest set under `configs/data/datasets.yaml`.
+## Historical Baseline Work
 
-## Reports and Notebooks
-Project-level status files:
-- `docs/PROJECT_STATUS.md`
-- `docs/ARCHITECTURE.md`
-- `reports/project_status/repo_audit.md`
-- `reports/project_status/current_status.md`
-- `logs/DECISIONS.md`
-- `logs/EXPERIMENT_LOG.md`
+The older Day 3 / Day 5 baseline path is preserved for research history:
 
-Currently present notebooks:
-- `notebooks/dataset_exploration.ipynb`
-- `notebooks/day3_baseline_training.ipynb`
-- `notebooks/day5_regularization_bn_dropout.ipynb`
+- `src/train_baseline.py`
+- `src/eval_baseline.py`
+- `src/dataset.py`
+- `src/transforms.py`
+- `src/models/simple_cnn.py`
+- `src/models/feature_extractor.py`
+- `scripts/day5_seed_sweep.py`
+- `src/legacy/`
 
-The professor-ready notebook set recommended in the cleanup plan is not yet fully generated in this refactor.
+Historical results are summarized in:
 
-## Serving and Utilities
-FastAPI:
-```bash
-make serve
+- `reports/historical/REPORTED_RESULTS.md`
+- `reports/day3_baseline_observations.md`
+- `reports/day5_regularization_observations.md`
+
+Important: these are historical reported results unless explicitly labeled as recomputed after the cleanup. This cleanup did not train or recompute metrics.
+
+## Anomaly Track
+
+Current status: first baseline implemented and executed on D1 with cached ResNet-18 weights.
+
+Created for future anomaly work:
+
+- `configs/anomaly/anomaly_baseline.yaml`
+- `src/anomaly/`
+- `scripts/anomaly/`
+- `reports/anomaly/`
+- `notebooks/03_anomaly_baseline/anomaly_direction_plan.ipynb`
+- `notebooks/03_anomaly_baseline/anomaly_baseline_results.ipynb`
+
+Implemented first anomaly baseline:
+- train only on good tyre images
+- extract frozen CNN embeddings
+- compute a normality/anomaly score
+- select thresholds on validation data
+- report final behavior once on test data
+
+The default method is pretrained ResNet-18 pooled embeddings plus Mahalanobis distance. The first completed D1 run used cached ResNet-18 weights from the local Torch cache.
+
+First D1 anomaly result:
+- AUROC: `0.7194`
+- AUPRC: `0.7212`
+- anomaly recall: `0.2846`
+- anomaly precision: `0.7708`
+- false negatives: `93`
+- false positives: `11`
+
+This is a real baseline result, but recall is too low for a recall-critical tyre inspection claim. See `reports/anomaly/anomaly_results_summary.md`.
+
+Controlled anomaly benchmark update:
+- `resnet18_mahalanobis_reference`: reused baseline, recall `0.2846`, FN `93`
+- `resnet18_knn`: recall `0.5231`, FN `62`
+- `resnet18_threshold_sweep`: recall `0.5769`, FN `55`
+- `resnet50_mahalanobis`: recall `0.7077`, FN `38`
+- `resnet50_knn`: recall `0.8231`, FN `23`
+- `resnet18_patch_grid_knn`: recall `0.3462`, FN `85`
+
+Current next-best anomaly candidate: `resnet50_knn`. It is improved but still not production-ready.
+
+Robustness update:
+- realistic corruption benchmark completed for `resnet50_knn`, `resnet50_mahalanobis`, `resnet18_knn_control`, and `resnet50_knn_noise_robust`
+- `resnet50_knn` degraded moderately under tested corruptions; worst tested recall was `0.7846`
+- mild noise-robust `resnet50_knn` preserved clean recall (`0.8231`) and reduced clean false positives from `15` to `13`
+- robustness training helped nuisance stability but did not reduce clean false negatives, so patch-aware/local-feature work remains the next main anomaly direction
+
+Local-feature benchmark update:
+- `resnet50_knn_threshold_sweep`: recall `0.9462`, FN `7`, FP `36`
+- `resnet50_multicrop_knn`: recall `0.8231`, FN `23`, FP `20`
+- `resnet50_patch_grid_knn_fine`: recall `0.4692`, FN `69`, FP `19`
+
+Current best recall-oriented anomaly candidate: `resnet50_knn_threshold_sweep`. This was selected by validation-only threshold refinement and improves false negatives, but it increases false positives. The simple local crop/patch variants did not beat threshold refinement.
+
+Patch-aware benchmark update:
+- `resnet50_knn_threshold_sweep_reference`: recall `0.9462`, FN `7`, FP `36`
+- `resnet50_featuremap_patch_knn`: recall `0.1000`, FN `117`, FP `6`
+- `resnet50_featuremap_patch_knn_threshold_sweep`: recall `0.4615`, FN `70`, FP `30`
+- `resnet50_patchcore_lite`: recall `0.2385`, FN `99`, FP `11`
+
+Current decision: the threshold-swept pooled ResNet50 kNN reference remains best. The first feature-map patch-memory implementation did not improve tyre anomaly detection.
+
+Lower/mid-level patch-aware follow-up:
+- `resnet50_layer3_patch_knn`: recall `0.1231`, FN `114`, FP `12`
+- `resnet50_layer3_patch_knn_threshold_sweep`: recall `0.3385`, FN `86`, FP `41`
+- `resnet50_layer2_layer3_patch_knn_threshold_sweep`: recall `0.2154`, FN `102`, FP `38`
+
+Current decision after the lower/mid-level follow-up: the threshold-swept pooled ResNet50 kNN reference still remains best. The layer3 and layer2+layer3 patch-memory variants with robust score normalization did not reduce false negatives. The next anomaly step should diagnose why patch-memory scores are weak before adding more patch variants.
+
+## External Dataset Registry
+
+Roboflow Universe has been audited only as a possible external data source. No Roboflow dataset has been downloaded or merged into D1.
+
+Near-term candidates for careful supervised/anomaly support after license and provenance review:
+- Good Tire Bad Tire
+- Tires Defects
+
+Later-phase candidates:
+- Tire Tread, because it is detection/localization oriented.
+- defect by Hemant, because it is detection/localization oriented.
+
+Blocked/pending candidates:
+- Tire Quality, pending explicit license verification.
+- tire / College segmentation, pending exact source and license verification.
+
+External datasets must stay separate from D1 until their licenses, labels, task type, and augmentation/version inflation risks are audited.
+
+## Web-Data Curation Track
+
+Current status: research-grade scaffold and manual/provider-stub pipeline implemented. A first manual pilot orchestrator now exists, but no approved pilot CSV has been provided yet, so no real candidate images have been ingested or reviewed.
+
+Created for web curation:
+
+- `configs/web_collection/web_collection.yaml`
+- `configs/web_collection/query_catalog.yaml`
+- `src/web_collection/`
+- `scripts/web_collection/`
+- `docs/process/WEB_COLLECTION_POLICY.md`
+- `docs/process/WEB_CURATION_WORKFLOW.md`
+- `reports/web_collection/`
+- `notebooks/04_web_data_curation/`
+
+The implemented workflow supports editable query catalogs, manual CSV/JSON URL import, future approved provider API stubs, candidate metadata tracking, download/copy metadata updates, deduplication and quality filtering, optional anomaly-triage status hooks, and human-review queue generation.
+
+Source acquisition now includes a safe provider/manual discovery layer:
+- `configs/web_collection/provider_sources.yaml`
+- `docs/process/WEB_SOURCE_ACQUISITION_GUIDE.md`
+- `docs/process/GOOGLE_MANUAL_DISCOVERY_WORKFLOW.md`
+- `scripts/web_collection/import_manual_google_discovery.py`
+- `scripts/web_collection/provider_smoke_check.py`
+
+Google remains manual discovery only. Official-provider adapters are scaffolded for Wikimedia Commons, Pexels, Unsplash, and Flickr; Pexels/Unsplash/Flickr require user-provided API credentials.
+
+Important: web candidates are not automatically labeled good. They remain research candidates until filtered and reviewed by a human. Do not scrape Google HTML; use manual import or approved provider APIs.
+
+The current anomaly baseline is not reliable enough to label web images automatically. Model scores may only assist review prioritization.
+
+First manual pilot:
+- input template: `data/external/manual_candidate_urls/approved_tyres_pilot_urls_template.csv`
+- guide: `docs/process/MANUAL_PILOT_INPUT_GUIDE.md`
+- orchestrator: `scripts/web_collection/run_manual_pilot.py`
+- current status: `reports/current_status/manual_pilot_status.md`
+
+## Notebook Map
+
+- `notebooks/00_project_overview/project_overview.ipynb`: project orientation
+- `notebooks/01_data_audit/data_manifest_audit.ipynb`: manifest and dataset audit
+- `notebooks/02_supervised_baseline/supervised_baseline_review.ipynb`: supervised baseline review
+- `notebooks/03_anomaly_baseline/anomaly_direction_plan.ipynb`: anomaly plan
+- `notebooks/03_anomaly_baseline/anomaly_baseline_results.ipynb`: anomaly baseline status/results placeholders
+- `notebooks/03_anomaly_baseline/anomaly_model_benchmark.ipynb`: controlled anomaly benchmark summary
+- `notebooks/03_anomaly_baseline/anomaly_corruption_benchmark.ipynb`: corruption robustness benchmark summary
+- `notebooks/03_anomaly_baseline/anomaly_local_feature_benchmark.ipynb`: local-feature benchmark summary
+- `notebooks/03_anomaly_baseline/false_negative_overlap_review.ipynb`: false-negative overlap review
+- `notebooks/03_anomaly_baseline/high_recall_error_review.ipynb`: high-recall FN/FP review pack
+- `notebooks/03_anomaly_baseline/high_recall_error_pattern_review.ipynb`: qualitative high-recall error pattern notes
+- `notebooks/03_anomaly_baseline/anomaly_patch_aware_benchmark.ipynb`: patch-aware benchmark summary
+- `notebooks/03_anomaly_baseline/anomaly_patch_layer_benchmark.ipynb`: lower/mid-level patch-aware follow-up
+- `notebooks/03_anomaly_baseline/patch_false_negative_overlap_review.ipynb`: patch-aware overlap review
+- `notebooks/04_web_data_curation/query_catalog_review.ipynb`: query catalog review
+- `notebooks/04_web_data_curation/filtering_and_review.ipynb`: filtering and review workflow
+- `notebooks/04_web_data_curation/review_workflow_demo.ipynb`: human review status workflow
+- `notebooks/04_web_data_curation/manual_pilot_results.ipynb`: first manual pilot status/results
+- `notebooks/04_web_data_curation/manual_pilot_review_pack.ipynb`: visual review pack workflow
+- `notebooks/05_results/results_index.ipynb`: report/result index
+
+Older useful notebooks were moved into the new folders with `legacy_` prefixes.
+
+## Documentation Map
+
+- `docs/project/PROJECT_STATUS.md`: implemented, partial, and planned work
+- `docs/architecture/REPO_ARCHITECTURE.md`: repo layout and canonical paths
+- `docs/project/ROADMAP.md`: research roadmap
+- `reports/current_status/repo_audit.md`: current cleanup audit
+- `reports/historical/REPORTED_RESULTS.md`: historical reported results
+- `docs/codex/BASE_CONTEXT.md`: durable project context for future prompts
+- `docs/codex/PROMPT_CONTRACT.md`: future Codex prompt requirements
+- `docs/process/WEB_COLLECTION_POLICY.md`: web candidate collection boundaries
+- `docs/process/WEB_CURATION_WORKFLOW.md`: step-by-step web curation pipeline
+- `docs/project/PLATFORM_STRATEGY.md`: grounded future platform strategy
+
+## Logging Conventions
+
+Every substantial future prompt should create:
+
+```text
+logs/work_logs/WORK_LOG_<YYYYMMDD_HHMMSS>.md
+logs/process_logs/PROCESS_LOG_<YYYYMMDD_HHMMSS>.md
 ```
 
-Streamlit QA app:
-```bash
-make app
+And update:
+
+```text
+logs/work_logs/LATEST.md
+logs/process_logs/LATEST.md
 ```
 
-Batch inference:
+The log rules are defined in `docs/codex/PROMPT_CONTRACT.md`.
+
+## Setup
+
 ```bash
-python scripts/demo_infer.py \
-  --model artifacts/experiments/resnet18_tyrenet_v1/best.pt \
-  --input_dir path/to/images \
-  --output_csv artifacts/demo_results.csv
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
-Export:
+Or:
+
 ```bash
-make export
+make setup
 ```
 
-## Current Results Summary
-Only historical results already documented in committed reports are summarized here.
+## Testing
 
-Historical baseline observations:
-- `reports/day3_baseline_observations.md` records a strong D1 baseline for `frozen_resnet50` with partial fine-tuning over 3 epochs:
-  - accuracy `0.9804`
-  - defect recall `0.9692`
-  - defect F1 `0.9805`
-  - AUROC `0.9985`
-- `reports/day5_regularization_observations.md` records that, across the longer multi-seed SimpleCNN comparison:
-  - baseline had the highest mean recall but high variance
-  - augmentation had the most stable precision / AUPRC trade-off
+```bash
+pytest -q
+```
 
-These are historical baseline results from the legacy comparison path, not claims about the cleaned canonical pipeline after this refactor.
+If dependencies are missing in the local environment, install from `requirements.txt` first.
 
-## Experimental and Planned Work
-Experimental or partial:
-- CNN→GNN option in `src/models/cnn_gnn.py`
-- multi-dataset configuration across D1, D2, D3
-- registry-backed model loading when experiment outputs are present
+## Next Steps
 
-Planned:
-- anomaly detection studies
-- localization and segmentation
-- cross-dataset robustness experiments with populated D2/D3 manifests
-- multi-view 3D reconstruction
-- defect projection to mesh
-- knowledge-graph-style reasoning
-
-## Discussion Topics For Professor Meetings
-- Which metric should be primary for the next research milestone: recall, F1, or calibrated operating threshold?
-- Whether D2/D3 should be integrated next for robustness, or whether D1 error analysis should be deepened first
-- Whether the next milestone should stay in classification or branch into anomaly detection / localization
-- How much historical baseline code should remain user-facing versus archived-only
-
-## Maintenance Notes
-- The active path is `src/train.py` plus `src/evaluate.py`.
-- The legacy baseline path is archived under `src/legacy/`.
-- Root-level config files are retained as compatibility copies; new work should use `configs/aug/`, `configs/data/`, and `configs/train/`.
-- Do not add reported metrics unless they are backed by committed reports or reproducible artifacts.
+1. Run tests after cleanup and fix any environment-specific issues.
+2. Choose one future manifest convention for supervised and anomaly work.
+3. Recompute a supervised baseline using the canonical `src/train.py` / `src/evaluate.py` path.
+4. Create good-only training manifests for anomaly detection.
+5. Review anomaly false negatives and compare kNN/threshold alternatives.
+6. Create a manual URL CSV and run the web curation pipeline on a small approved sample.
+7. Review candidates manually before using any likely-normal web images for anomaly training.
